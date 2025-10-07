@@ -1,55 +1,49 @@
+#include "Word.h"
 #include <string>
-#include <iostream>
 using namespace std;
-#include "token.h"
-#include "tag.h"
 
-class word : public Token {
-private:
-    string lexeme;
+Word::Word(string s, int tag) : Token(tag), lexeme(s) {}
 
-public:
-    Word(string s, int tag) : Token(tag), lexeme(s) {}
+string Word::getLexeme() const {
+    return lexeme;
+}
 
-    string getLexeme() const { 
-        return lexeme; 
-    }
+string Word::toString() const {
+    return "<" + lexeme + ", " + to_string(tag) + ">";
+}
 
-    string toString() const override { 
-        return "<" + lexeme + ", " + to_string(tag) + ">"; 
-    }
-    inline static const Word start{"start", Tag::RES_START};
-    inline static const Word exit{"exit", Tag::RES_EXIT};
-    inline static const Word end{"end", Tag::RES_END};
-    inline static const Word _if{"if", Tag::RES_IF};
-    inline static const Word then{"then", Tag::RES_THEN};
-    inline static const Word _else{"else", Tag::RES_ELSE};
-    inline static const Word _do{"do", Tag::RES_DO};
-    inline static const Word _while{"while", Tag::RES_WHILE};
-    inline static const Word scan{"scan", Tag::RES_SCAN};
-    inline static const Word print{"print", Tag::RES_PRINT};
-    inline static const Word semi{";", Tag::PT_SEMI};
-    inline static const Word comma{",", Tag::PT_COMMA};
-    inline static const Word dot{".", Tag::PT_DOT};
-    inline static const Word opar{"(", Tag::PT_OPAR};
-    inline static const Word cpar{")", Tag::PT_CPAR};
-    inline static const Word obra{"{", Tag::PT_OBRA};
-    inline static const Word cbra{"}", Tag::PT_CBRA};
-    inline static const Word and_{"&&", Tag::RL_AND};
-    inline static const Word or_{"||", Tag::RL_OR};
-    inline static const Word not_{"!", Tag::RL_NOT};
-    inline static const Word add{"+", Tag::OP_ADD};
-    inline static const Word sub{"-", Tag::OP_SUB};
-    inline static const Word mul{"*", Tag::OP_MUL};
-    inline static const Word div{"/", Tag::OP_DIV};
-    inline static const Word asg{"=", Tag::OP_ASG};
-    inline static const Word gt{">", Tag::CP_GT};
-    inline static const Word ge{">=", Tag::CP_GE};
-    inline static const Word lt{"<", Tag::CP_LT};
-    inline static const Word le{"<=", Tag::CP_LE};
-    inline static const Word df{"<>", Tag::CP_DF};
-    inline static const Word eq{"==", Tag::CP_EQ};
-    inline static const Word type_int{"int", Tag::TYPE_INT};
-    inline static const Word type_float{"float", Tag::TYPE_FLOAT};
-    inline static const Word type_string{"string", Tag::TYPE_STRING};
-};
+
+const Word Word::start("start", Tag::RES_START);
+const Word Word::exit("exit", Tag::RES_EXIT);
+const Word Word::end("end", Tag::RES_END);
+const Word Word::_if("if", Tag::RES_IF);
+const Word Word::then("then", Tag::RES_THEN);
+const Word Word::_else("else", Tag::RES_ELSE);
+const Word Word::_do("do", Tag::RES_DO);
+const Word Word::_while("while", Tag::RES_WHILE);
+const Word Word::scan("scan", Tag::RES_SCAN);
+const Word Word::print("print", Tag::RES_PRINT);
+const Word Word::semi(";", Tag::PT_SEMI);
+const Word Word::comma(",", Tag::PT_COMMA);
+const Word Word::dot(".", Tag::PT_DOT);
+const Word Word::opar("(", Tag::PT_OPAR);
+const Word Word::cpar(")", Tag::PT_CPAR);
+const Word Word::obra("{", Tag::PT_OBRA);
+const Word Word::cbra("}", Tag::PT_CBRA);
+const Word Word::and_("&&", Tag::RL_AND);
+const Word Word::or_("||", Tag::RL_OR);
+const Word Word::not_("!", Tag::RL_NOT);
+const Word Word::add("+", Tag::OP_ADD);
+const Word Word::sub("-", Tag::OP_SUB);
+const Word Word::mul("*", Tag::OP_MUL);
+const Word Word::div("/", Tag::OP_DIV);
+const Word Word::asg("=", Tag::OP_ASG);
+const Word Word::gt(">", Tag::CP_GT);
+const Word Word::ge(">=", Tag::CP_GE);
+const Word Word::lt("<", Tag::CP_LT);
+const Word Word::le("<=", Tag::CP_LE);
+const Word Word::df("<>", Tag::CP_DF);
+const Word Word::eq("==", Tag::CP_EQ);
+const Word Word::type_int("int", Tag::TYPE_INT);
+const Word Word::type_float("float", Tag::TYPE_FLOAT);
+const Word Word::type_string("string", Tag::TYPE_STRING);

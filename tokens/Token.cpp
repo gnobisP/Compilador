@@ -1,15 +1,18 @@
+#ifndef TOKEN_H
+#define TOKEN_H
+
 #include <string>
 using namespace std;
 
 class Token {
 public:
-    const int tag; 
+    const int tag;
 
     Token(int t) : tag(t) {}
 
-    virtual ~Token() {}
-
-    virtual string toString() const {
+    string toString() const {
         return "<" + to_string(tag) + ">";
     }
 };
+
+#endif
