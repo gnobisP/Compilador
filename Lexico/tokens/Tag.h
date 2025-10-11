@@ -1,64 +1,64 @@
 #ifndef TAG_H
 #define TAG_H
 
-class Tag {
-public:
-    // Palavras reservadas
-    static const int RES_START;
-    static const int RES_EXIT;
-    static const int RES_END;
-    static const int RES_IF;
-    static const int RES_THEN;
-    static const int RES_ELSE;
-    static const int RES_DO;
-    static const int RES_WHILE;
-    static const int RES_SCAN;
-    static const int RES_PRINT;
-
-    // Pontuação
-    static const int PT_SEMI;
-    static const int PT_COMMA;
-    static const int PT_DOT;
-    static const int PT_OPAR;
-    static const int PT_CPAR;
-    static const int PT_OBRA;
-    static const int PT_CBRA;
-
-    // Operadores relacionais
-    static const int RL_AND;
-    static const int RL_OR;
-    static const int RL_NOT;
-
-    // Operadores aritméticos
-    static const int OP_ADD;
-    static const int OP_SUB;
-    static const int OP_MUL;
-    static const int OP_DIV;
-    static const int OP_ASG;
-
-    // Operadores de comparação
-    static const int CP_GT;
-    static const int CP_GE;
-    static const int CP_LT;
-    static const int CP_LE;
-    static const int CP_DF;
-    static const int CP_EQ;
-
-    // Tipos
-    static const int TYPE_INT;
-    static const int TYPE_FLOAT;
-    static const int TYPE_STRING;
+// Enumeração para todos os tags de token
+enum Tag {
+    // Identificador
+    ID=256,
 
     // Literais
-    static const int LIT_INT;
-    static const int LIT_FLOAT;
-    static const int LIT_STRING;
+    LIT_INT,
+    LIT_FLOAT,
+    LIT_STRING,
 
-    // Identificador
-    static const int ID;
+    // Palavras reservadas
+    RES_START,
+    RES_EXIT,
+    RES_END,
+    RES_IF,
+    RES_THEN,
+    RES_ELSE,
+    RES_DO,
+    RES_WHILE,
+    RES_SCAN,
+    RES_PRINT,
+
+    // Pontuação
+    PT_SEMI,
+    PT_COMMA,
+    PT_DOT,
+    PT_OPAR,
+    PT_CPAR,
+    PT_OBRA,
+    PT_CBRA,
+
+    // Operadores relacionais
+    RL_AND,
+    RL_OR,
+    RL_NOT,
+
+    // Operadores aritméticos
+    OP_ADD,
+    OP_SUB,
+    OP_MUL,
+    OP_DIV,
+    OP_ASG,
+
+    // Operadores de comparação
+    CP_GT,
+    CP_GE,
+    CP_LT,
+    CP_LE,
+    CP_DF,
+    CP_EQ,
+
+    // Tipos
+    TYPE_INT,
+    TYPE_FLOAT,
+    TYPE_STRING,
 
     // Fim de arquivo
-    static const int END_OF_FILE;
+    END_OF_FILE
 };
 
 #endif

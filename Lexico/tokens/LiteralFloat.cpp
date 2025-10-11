@@ -1,7 +1,5 @@
 #include "LiteralFloat.h"
-#include <string>
-#include <sstream>
-using namespace std;
+
 
 LiteralFloat::LiteralFloat(float v)
     : Token(Tag::LIT_FLOAT), value(v) {}

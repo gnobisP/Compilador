@@ -4,6 +4,9 @@
 #include "Token.h"
 #include "Tag.h"
 #include <string>
+#include <string>
+#include <sstream>
+
 using namespace std;
 
 class LiteralInteger : public Token {

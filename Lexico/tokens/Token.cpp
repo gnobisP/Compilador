@@ -1,18 +1,8 @@
-#ifndef TOKEN_H
-#define TOKEN_H
-
+#include "Token.h"
 #include <string>
-using namespace std;
 
-class Token {
-public:
-    const int tag;
+Token::Token(int t) : tag(t) {}
 
-    Token(int t) : tag(t) {}
-
-    string toString() const {
-        return "<" + to_string(tag) + ">";
-    }
-};
-
-#endif
+std::string Token::toString() const {
+    return "<" + std::to_string(tag) + ">";
+}

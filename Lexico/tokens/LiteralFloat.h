@@ -4,6 +4,8 @@
 #include "Token.h"
 #include "Tag.h"
 #include <string>
+#include <sstream>
+
 using namespace std;
 
 class LiteralFloat : public Token {

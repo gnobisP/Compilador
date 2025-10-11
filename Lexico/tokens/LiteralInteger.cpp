@@ -1,7 +1,5 @@
 #include "LiteralInteger.h"
-#include <string>
-#include <sstream>
-using namespace std;
+
 
 LiteralInteger::LiteralInteger(int v)
     : Token(Tag::LIT_INT), value(v) {}

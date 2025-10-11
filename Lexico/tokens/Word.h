@@ -7,13 +7,13 @@
 using namespace std;
 
 class Word : public Token {
-private:
-    string lexeme;
+
 
 public:
     Word(string s, int tag);
     string getLexeme() const;
     string toString() const;
+    string lexeme;
 
     static const Word start, exit, end, _if, then, _else, _do, _while,
                       scan, print, semi, comma, dot, opar, cpar,
