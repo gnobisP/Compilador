@@ -1,0 +1,6 @@
+app INT{
+    int a,b;
+    if(a>=b){
+        print(a);
+    }
+}

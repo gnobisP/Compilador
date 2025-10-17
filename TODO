@@ -1,0 +1,8 @@
+[ ] Mudar nomes de identificadores
+[ ] Revisar regras do lexico
+[ ] const string var = "Teste_lexico/teste7.txt"; passar como parametro do executavel
+[ ] mudar ordem de identificação de tokens no lexer
+[ ] Criar funções para as regras no LEXER
+[ ] tirar tagToString da main
+[ ] muda const LiteralInteger *li = dynamic_cast<const LiteralInteger *>(scanned)) na main
+[ ] mudar reserve(&Word::not_); no lexer

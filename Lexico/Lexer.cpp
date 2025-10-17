@@ -1,21 +1,22 @@
 #include "Lexer.h"
 
-
-
 int Lexer::line = 1;
-unordered_map<string, const Word*> Lexer::words;
-unordered_map<Token*, int> Lexer::errors;
+unordered_map<string, const Word *> Lexer::words;
+unordered_map<Token *, int> Lexer::errors;
 
 // insere uma palavra reservada na tabela
-void Lexer::reserve(const Word* w) {
+void Lexer::reserve(const Word *w)
+{
     words[w->getLexeme()] = w;
 }
 
 // construtor
-Lexer::Lexer(const string& fileName) {
+Lexer::Lexer(const string &fileName)
+{
     file.open(fileName);
-    if (!file.is_open()) {
-        cerr << "File not found: " << fileName << endl;
+    if (!file.is_open())
+    {
+        cerr << "Verifique o nome do arquivo" << fileName << endl;
         throw runtime_error("File not found");
     }
 
@@ -56,27 +57,38 @@ Lexer::Lexer(const string& fileName) {
 }
 
 // lê próximo caractere
-void Lexer::readch() {
+void Lexer::readch()
+{
     ch = file.get();
-    if (file.eof()) {
+    if (file.eof())
+    {
         ch = EOF;
     }
 }
 
-
 // lê e compara com c
-bool Lexer::readch(char c) {
+bool Lexer::readch(char c)
+{
     readch();
-    if (ch != c) return false;
+    if (ch != c)
+        return false;
     ch = ' ';
     return true;
 }
 
+void Lexer::addErro(int line){
+    Token *t = new Token(ch);
+    if (ch != EOF)
+        errors[t] = line;
+    throw new exception();
+}
 // método principal scan()
-const Token* Lexer::scan() {
+const Token *Lexer::scan()
+{
 
     // ignora espaços e quebras de linha
-    for (;; readch()) {
+    for (;; readch())
+    {
         if (ch == ' ' || ch == '\t' || ch == '\r' || ch == '\b')
             continue;
         else if (ch == '\n')
@@ -87,151 +99,219 @@ const Token* Lexer::scan() {
 
     // identifica comentários
     int line_aux = 0;
-    while (ch == '/') {
+    while (ch == '/')
+    {
         readch();
-        if (ch == '/') { // comentário de linha
-            do {
+        if (ch == '/')
+        { // comentário de linha
+            do
+            {
                 readch();
-                if (ch == '\n') {
+                if (ch == '\n')
+                {
                     readch();
                     line++;
                     break;
                 }
             } while (ch != EOF);
-        } else if (ch == '*') { // comentário de bloco
+        }
+        else if (ch == '*')
+        { // comentário de bloco
             line_aux = line;
-            do {
+            do
+            {
                 readch();
-                if (ch == '\n') line++;
-                if (ch == '*') {
+                if (ch == '\n')
+                    line++;
+                if (ch == '*')
+                {
                     readch();
-                    if (ch == '/') {
+                    if (ch == '/')
+                    {
                         readch();
                         break;
                     }
                 }
             } while (ch != EOF);
-        } else {
+        }
+        else
+        {
             return &Word::div;
         }
 
-        if (ch == EOF) {
-            Token* t = new Token('*');
+        if (ch == EOF)
+        {
+            Token *t = new Token('*');
             errors[t] = line_aux;
             return t;
         }
-        if (isspace(ch)) ch = '/';
+        if (isspace(ch))
+            ch = '/';
     }
 
     // pontuação
-    switch (ch) {
-        case ';': readch(); return &Word::semi;
-        case ',': readch(); return &Word::comma;
-        case '.': readch(); return &Word::dot;
-        case '(': readch(); return &Word::opar;
-        case ')': readch(); return &Word::cpar;
-        case '{': readch(); return &Word::obra;
-        case '}': readch(); return &Word::cbra;
+    switch (ch)
+    {
+    case ';':
+        readch();
+        return &Word::semi;
+    case ',':
+        readch();
+        return &Word::comma;
+    case '.':
+        readch();
+        return &Word::dot;
+    case '(':
+        readch();
+        return &Word::opar;
+    case ')':
+        readch();
+        return &Word::cpar;
+    case '{':
+        readch();
+        return &Word::obra;
+    case '}':
+        readch();
+        return &Word::cbra;
     }
 
     // operadores
-    switch (ch) {
-        case '&':
-            if (readch('&')) return &Word::and_;
-            else { Token* t = new Token('&'); errors[t] = line; return t; }
-        case '|':
-            if (readch('|')) return &Word::or_;
-            else { Token* t = new Token('|'); errors[t] = line; return t; }
-        case '!': readch(); return &Word::not_;
-        case '+': readch(); return &Word::add;
-        case '-': readch(); return &Word::sub;
-        case '*': readch(); return &Word::mul;
-        case '/': readch(); return &Word::div;
-        case '=':
-            if (readch('=')) return &Word::eq;
-            else return &Word::asg;
-        case '>':
-            if (readch('=')) return &Word::ge;
-            else return &Word::gt;
-        case '<':
-            readch();
-            if (ch == '=') return &Word::le;
-            else if (ch == '>') return &Word::df;
-            else return &Word::lt;
+    switch (ch)
+    {
+    case '&':
+        if (readch('&'))
+            return &Word::and_;
+        else
+        {
+            Token *t = new Token('&');
+            errors[t] = line;
+            return t;
+        }
+    case '|':
+        if (readch('|'))
+            return &Word::or_;
+        else
+        {
+            Token *t = new Token('|');
+            errors[t] = line;
+            return t;
+        }
+    case '!':
+        readch();
+        return &Word::not_;
+    case '+':
+        readch();
+        return &Word::add;
+    case '-':
+        readch();
+        return &Word::sub;
+    case '*':
+        readch();
+        return &Word::mul;
+    case '/':
+        readch();
+        return &Word::div;
+    case '=':
+        if (readch('='))
+            return &Word::eq;
+        else
+            return &Word::asg;
+    case '>':
+        if (readch('='))
+            return &Word::ge;
+        else
+            return &Word::gt;
+    case '<':
+        readch();
+        if (ch == '=')
+            return &Word::le;
+        else if (ch == '>')
+            return &Word::df;
+        else
+            return &Word::lt;
     }
 
     // números
-    if (isdigit(ch)) {
+    if (isdigit(ch))
+    {
         int value = 0;
-        do {
+        do
+        {
             value = 10 * value + (ch - '0');
             readch();
         } while (isdigit(ch));
+        if (!(isalpha(ch) || ch == '_'))
+        {
 
-        if (ch != '.') {
-            Word* w = new Word(to_string(value), Tag::LIT_INT);
-            words[to_string(value)] = w;
-            return new LiteralInteger(value);
-        } else {
-            readch();
-            float valuef = value;
-            float decUnit = 10;
-            while (isdigit(ch)) {
-                valuef += (ch - '0') / decUnit;
-                decUnit *= 10;
-                readch();
+            if (ch != '.')
+            {
+                Word *w = new Word(to_string(value), Tag::LIT_INT);
+                words[to_string(value)] = w;
+                return new LiteralInteger(value);
             }
-            Word* w = new Word(to_string(value), Tag::LIT_FLOAT);
-            words[to_string(value)] = w;
-            return new LiteralFloat(valuef);
+            else
+            {
+                readch();
+                float valuef = value;
+                float decUnit = 10;
+                while (isdigit(ch))
+                {
+                    valuef += (ch - '0') / decUnit;
+                    decUnit *= 10;
+                    readch();
+                }
+                if (!(isalpha(ch) || ch == '_'))
+                {
+                    Word *w = new Word(to_string(value), Tag::LIT_FLOAT);
+                    words[to_string(value)] = w;
+                    return new LiteralFloat(valuef);
+                }
+            }
         }
+        addErro(line);
     }
 
     // strings literais
-    if (ch == '"') {
+    if (ch == '"')
+    {
         string s;
         s += ch;
         readch();
-        while (ch != '"' && ch != EOF) {
+        while (ch != '"')
+        {
+            if(ch == EOF or ch=='\n')
+                addErro(line);
             s += ch;
             readch();
         }
         s += ch;
         readch();
-        //Word* w = new Word(s, Tag::LIT_FLOAT);
         return new LiteralString(s);
     }
 
     // identificadores e palavras reservadas
-    if (isalpha(ch) || ch == '_') {
+    if (isalpha(ch) || ch == '_')
+    {
         string s;
-        do {
+        do
+        {
             s += ch;
             readch();
         } while (isalnum(ch) || ch == '_');
 
         auto it = words.find(s);
-        if (it != words.end()) return it->second;
-        Word* w = new Word(s, Tag::ID);//Para identificadores devemos colocar a tag ID e o valor literal
+        if (it != words.end())
+            return it->second;
+        Word *w = new Word(s, Tag::ID); // Para identificadores devemos colocar a tag ID e o valor literal
         words[s] = w;
         return w;
     }
 
     // final de arquivo
-    if(ch == EOF)
-       return &Word::eof;
+    if (ch == EOF)
+        return &Word::eof;
 
-    // erro genérico
-    Token* t = new Token(ch);
-    if (ch != EOF) errors[t] = line;
-
-    // lança uma exceção com uma mensagem explicando o erro
-    if (ch != EOF) {
-        throw std::runtime_error("Erro léxico na linha " + std::to_string(line) + 
-                                ": caractere inválido '" + std::string(1, ch) + "'");
-        printf("Erro léxico na linha ");
-    }
-
-    ch = ' ';
-    return t;
+    // Exceção de caracter não incluso na linguagem
+    if (ch != EOF)
+        addErro(line);
 }

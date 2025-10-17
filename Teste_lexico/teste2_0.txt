@@ -1,4 +1,3 @@
- 
 app geometria  
   real raio, area, volume lado; 
   int 1result, teste3 

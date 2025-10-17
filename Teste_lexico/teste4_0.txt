@@ -1,8 +1,7 @@
- 
 app serie 
   int num, cont=1, serie=-1; 
  
-  print("Informe a quantidade de termos: "); 
+  print("Informe a quantidade de termos: ");  
   scan(num); 
  
   if (num< 0) 

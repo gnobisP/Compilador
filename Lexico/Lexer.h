@@ -6,7 +6,8 @@
 #include <unordered_map>
 #include <cctype>
 #include <string>
-#include <stdexcept>  // para std::runtime_error
+#include <stdexcept>  
+#include <exception> 
 #include "tokens/Token.h"
 #include "tokens/Word.h"
 #include "tokens/LiteralInteger.h"
@@ -28,10 +29,12 @@ private:
     void reserve(const Word* w);
     void readch();
     bool readch(char c);
+    void addErro(int line);
 
 public:
     Lexer(const string& fileName);
     const Token* scan();
+    
 };
 
 #endif
