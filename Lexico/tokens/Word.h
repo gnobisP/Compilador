@@ -18,7 +18,7 @@ public:
     static const Word start, exit, end, _if, then, _else, _do, _while,
                       scan, print, semi, comma, dot, opar, cpar,
                       obra, cbra, and_, or_, not_, add, sub, mul, div,
-                      asg, gt,ge,lt,le,df,eq,
+                      asg, gt,ge,lt,le,df,eq, eof,
                       type_int, type_float, type_string;
 };
 

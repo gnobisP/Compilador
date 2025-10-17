@@ -8,5 +8,6 @@ public:
     const int tag;
     Token(int t);
     string toString() const;
+    virtual ~Token() = default;  
 };
 #endif

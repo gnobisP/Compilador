@@ -58,8 +58,11 @@ Lexer::Lexer(const string& fileName) {
 // lê próximo caractere
 void Lexer::readch() {
     ch = file.get();
-    if (file.eof()) ch = EOF;
+    if (file.eof()) {
+        ch = EOF;
+    }
 }
+
 
 // lê e compara com c
 bool Lexer::readch(char c) {
@@ -71,6 +74,7 @@ bool Lexer::readch(char c) {
 
 // método principal scan()
 const Token* Lexer::scan() {
+
     // ignora espaços e quebras de linha
     for (;; readch()) {
         if (ch == ' ' || ch == '\t' || ch == '\r' || ch == '\b')
@@ -165,6 +169,8 @@ const Token* Lexer::scan() {
         } while (isdigit(ch));
 
         if (ch != '.') {
+            Word* w = new Word(to_string(value), Tag::LIT_INT);
+            words[to_string(value)] = w;
             return new LiteralInteger(value);
         } else {
             readch();
@@ -175,6 +181,8 @@ const Token* Lexer::scan() {
                 decUnit *= 10;
                 readch();
             }
+            Word* w = new Word(to_string(value), Tag::LIT_FLOAT);
+            words[to_string(value)] = w;
             return new LiteralFloat(valuef);
         }
     }
@@ -190,6 +198,7 @@ const Token* Lexer::scan() {
         }
         s += ch;
         readch();
+        //Word* w = new Word(s, Tag::LIT_FLOAT);
         return new LiteralString(s);
     }
 
@@ -203,10 +212,14 @@ const Token* Lexer::scan() {
 
         auto it = words.find(s);
         if (it != words.end()) return it->second;
-        Word* w = new Word(s, Tag::ID);
+        Word* w = new Word(s, Tag::ID);//Para identificadores devemos colocar a tag ID e o valor literal
         words[s] = w;
         return w;
     }
+
+    // final de arquivo
+    if(ch == EOF)
+       return &Word::eof;
 
     // erro genérico
     Token* t = new Token(ch);

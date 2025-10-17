@@ -7,7 +7,7 @@ enum Tag {
     ID=256,
 
     // Literais
-    LIT_INT,
+    LIT_INT=257,
     LIT_FLOAT,
     LIT_STRING,
 

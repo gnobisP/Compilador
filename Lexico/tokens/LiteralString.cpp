@@ -8,5 +8,5 @@ string LiteralString::getValue() const {
 }
 
 string LiteralString::toString() const {
-    return "<" + value + ", " + to_string(tag) + ">";
+    return  value + ", " + to_string(tag) ;
 }

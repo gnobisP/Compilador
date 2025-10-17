@@ -44,6 +44,7 @@ const Word Word::lt("<", Tag::CP_LT);
 const Word Word::le("<=", Tag::CP_LE);
 const Word Word::df("<>", Tag::CP_DF);
 const Word Word::eq("==", Tag::CP_EQ);
+const Word Word::eof("EOF", Tag::END_OF_FILE);
 const Word Word::type_int("int", Tag::TYPE_INT);
 const Word Word::type_float("float", Tag::TYPE_FLOAT);
 const Word Word::type_string("string", Tag::TYPE_STRING);

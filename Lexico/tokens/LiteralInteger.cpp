@@ -9,5 +9,5 @@ int LiteralInteger::getValue() const {
 }
 
 string LiteralInteger::toString() const {
-    return "<" + to_string(value) + ", " + to_string(tag) + ">";
+    return  to_string(value) + ", " + to_string(tag) ;
 }
