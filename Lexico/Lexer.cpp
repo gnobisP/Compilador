@@ -121,6 +121,9 @@ const Token *Lexer::scanNumber()
     }
 
     readch();
+    if(!isdigit(ch)) {
+        addErro(line);
+    }
     float valuef = value;
     float decUnit = 10;
     while (isdigit(ch))
