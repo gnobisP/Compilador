@@ -1,6 +1,8 @@
 #ifndef TAG_H
 #define TAG_H
 
+#include <string>
+using namespace std;
 // Enumeração para todos os tags de token
 enum Tag {
     // Identificador
@@ -61,5 +63,8 @@ enum Tag {
     // Fim de arquivo
     END_OF_FILE
 };
+
+// Declaração da função
+string tagToString(int tag);
 
 #endif
