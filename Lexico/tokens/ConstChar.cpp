@@ -8,5 +8,5 @@ char ConstChar::getValue() const {
 }
 
 string ConstChar::toString() const {
-    return value + "', " + to_string(tag);
+    return string(1, value)  + ", ";
 }

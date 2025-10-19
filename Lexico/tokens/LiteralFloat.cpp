@@ -8,5 +8,5 @@ float LiteralFloat::getValue() const {
     return value;
 }
 string LiteralFloat::toString() const {
-    return to_string(value) + ", " + to_string(tag);
+    return to_string(value) + ", ";
 }

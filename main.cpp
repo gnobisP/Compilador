@@ -123,7 +123,7 @@ string tagToString(int tag)
 int main(int argc, char *argv[])
 {
     // Caminho do arquivo (pode ser alterado conforme necessidade)
-    const string var = "Teste_lexico/teste7.txt";
+    const string var = "Teste_lexico/teste6_1.txt";
     const string filePath = var;
 
     try
@@ -132,7 +132,7 @@ int main(int argc, char *argv[])
 
         cout << "-------------------------------------------------------------------------\n";
         cout << "TOKENS\n";
-        cout << "------\n";
+        cout << "--------------------------------------------------------------------------\n";
 
         while (true)
         {
@@ -162,10 +162,7 @@ int main(int argc, char *argv[])
             else if (const ConstChar *lc = dynamic_cast<const ConstChar *>(scanned))
             {
                 lexeme = lc->toString();
-            }
-            else
-            {
-                lexeme = "?";
+                
             }
 
             // Imprime no formato <numero, TAG, lexema>
@@ -174,7 +171,7 @@ int main(int argc, char *argv[])
 
         cout << "\n-------------------------------------------------------------------------\n";
         cout << "Tabela de simbolos\n";
-        cout << "------------\n";
+        cout << "---------------------------------------------------------------------------\n";
 
         for (const auto &entry : Lexer::words)
         {

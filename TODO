@@ -1,3 +1,4 @@
+[ ] COnsertar o simbolo esquesito no char
 [ ] Mudar nomes de identificadores
 [ ] Revisar regras do lexico
 [ ] const string var = "Teste_lexico/teste7.txt"; passar como parametro do executavel

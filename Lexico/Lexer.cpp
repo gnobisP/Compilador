@@ -287,22 +287,22 @@ const Token *Lexer::scan()
         }
         s += ch;
         readch();
+        Word *w = new Word(s, Tag::LIT_INT);
+        words[s] = w;
         return new LiteralString(s);
     }
     if (ch == '\'')
     {
         char s;
-        s += ch;
         readch();
-        while (ch != '\'')
-        {
-            if(ch == EOF or ch=='\n')
-                addErro(line);
-            s += ch;
-            readch();
-        }
-        s += ch;
+        s = ch;
         readch();
+        if(ch != '\'')
+            addErro(line);
+        readch();
+        
+        Word *w = new Word(to_string(s), Tag::LIT_INT);
+        words[to_string(s)] = w;
         return new ConstChar(s);
     }
 
