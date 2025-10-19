@@ -13,6 +13,7 @@
 #include "tokens/LiteralInteger.h"
 #include "tokens/LiteralFloat.h"
 #include "tokens/LiteralString.h"
+#include "tokens/ConstChar.h"
 
 using namespace std;
 

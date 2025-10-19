@@ -56,6 +56,7 @@ enum Tag {
     TYPE_INT,
     TYPE_FLOAT,
     TYPE_STRING,
+    CONST_CHAR,
 
     // Fim de arquivo
     END_OF_FILE

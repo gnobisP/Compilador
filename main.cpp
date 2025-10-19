@@ -7,6 +7,7 @@
 #include "Lexico/tokens/LiteralInteger.h"
 #include "Lexico/tokens/LiteralFloat.h"
 #include "Lexico/tokens/LiteralString.h"
+#include "Lexico/tokens/ConstChar.h"
 #include "Lexico/tokens/Tag.h"
 
 using namespace std;
@@ -27,6 +28,8 @@ string tagToString(int tag)
         return "LIT_FLOAT";
     case Tag::LIT_STRING:
         return "LIT_STRING";
+    case Tag::CONST_CHAR:
+        return "CONST_CHAR";
 
     // Palavras reservadas
     case Tag::RES_START:
@@ -155,6 +158,10 @@ int main(int argc, char *argv[])
             else if (const LiteralString *ls = dynamic_cast<const LiteralString *>(scanned))
             {
                 lexeme = ls->toString();
+            }
+            else if (const ConstChar *lc = dynamic_cast<const ConstChar *>(scanned))
+            {
+                lexeme = lc->toString();
             }
             else
             {

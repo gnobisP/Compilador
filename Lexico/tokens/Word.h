@@ -19,7 +19,7 @@ public:
                       scan, print, semi, comma, dot, opar, cpar,
                       obra, cbra, and_, or_, not_, add, sub, mul, div,
                       asg, gt,ge,lt,le,df,eq, eof,
-                      type_int, type_float, type_string;
+                      type_int, type_float, type_string, const_char;
 };
 
 #endif

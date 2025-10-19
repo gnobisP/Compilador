@@ -48,3 +48,4 @@ const Word Word::eof("EOF", Tag::END_OF_FILE);
 const Word Word::type_int("int", Tag::TYPE_INT);
 const Word Word::type_float("float", Tag::TYPE_FLOAT);
 const Word Word::type_string("string", Tag::TYPE_STRING);
+const Word Word::const_char("char", Tag::CONST_CHAR);

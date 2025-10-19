@@ -54,6 +54,7 @@ Lexer::Lexer(const string &fileName)
     reserve(&Word::type_int);
     reserve(&Word::type_float);
     reserve(&Word::type_string);
+    reserve(&Word::const_char);
 }
 
 // lê próximo caractere
@@ -287,6 +288,22 @@ const Token *Lexer::scan()
         s += ch;
         readch();
         return new LiteralString(s);
+    }
+    if (ch == '\'')
+    {
+        char s;
+        s += ch;
+        readch();
+        while (ch != '\'')
+        {
+            if(ch == EOF or ch=='\n')
+                addErro(line);
+            s += ch;
+            readch();
+        }
+        s += ch;
+        readch();
+        return new ConstChar(s);
     }
 
     // identificadores e palavras reservadas

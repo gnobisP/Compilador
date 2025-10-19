@@ -31,5 +31,5 @@ app escola
 print ("Deseja continuar?(S/N) "); 
 scan(resp); 
 } 
-While(resp == "S' || resp == 's); 
+While(resp == 'S' || resp == 's'); 
 }
