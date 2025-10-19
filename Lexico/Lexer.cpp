@@ -37,9 +37,9 @@ Lexer::Lexer(const string &fileName)
     reserve(&Word::cpar);
     reserve(&Word::obra);
     reserve(&Word::cbra);
-    reserve(&Word::and_);
-    reserve(&Word::or_);
-    reserve(&Word::not_);
+    reserve(&Word::_and);
+    reserve(&Word::_or);
+    reserve(&Word::_not);
     reserve(&Word::add);
     reserve(&Word::sub);
     reserve(&Word::mul);
@@ -259,7 +259,7 @@ const Token *Lexer::scanOperatorOrPunctuation()
         return &Word::cbra;
     case '&':
         if (readch('&'))
-            return &Word::and_;
+            return &Word::_and;
         else
         {
             Token *t = new Token('&');
@@ -268,7 +268,7 @@ const Token *Lexer::scanOperatorOrPunctuation()
         }
     case '|':
         if (readch('|'))
-            return &Word::or_;
+            return &Word::_or;
         else
         {
             Token *t = new Token('|');
@@ -277,7 +277,7 @@ const Token *Lexer::scanOperatorOrPunctuation()
         }
     case '!':
         readch();
-        return &Word::not_;
+        return &Word::_not;
     case '+':
         readch();
         return &Word::add;
