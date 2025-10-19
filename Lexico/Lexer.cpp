@@ -111,6 +111,9 @@ const Token *Lexer::scanNumber()
     {
         value = 10 * value + (ch - '0');
         readch();
+        if(isalpha(ch) || ch == '_'){
+            addErro(line);
+        }
     } while (isdigit(ch));
 
     if (ch != '.')

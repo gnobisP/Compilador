@@ -1,6 +1,6 @@
 app geometria  
   real raio, area, volume lado; 
-  int 1result, teste3 
+  int result, teste3 
  
 { print("Entre com o raio:"); 
   scand(raio); 
@@ -11,7 +11,7 @@ app geometria
     volume = (4 * 3.14 * raio * raio * raio / 3; 
     print("Area: "); 
     print (area); 
-    print ("Volume"); 
+    print ("Volume); 
     print (volume); 
   }; 
   geometria = -volume; 
