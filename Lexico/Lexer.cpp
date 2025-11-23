@@ -332,7 +332,6 @@ const Token *Lexer::scanOperatorOrPunctuation()
             readch();
             return &Word::eq;}
         else{
-            readch();
             return &Word::asg;}
     case '>':
         if (readch('=')){
@@ -340,7 +339,6 @@ const Token *Lexer::scanOperatorOrPunctuation()
             return &Word::ge;
         }
         else{
-            readch();
             return &Word::gt;
         }
     case '<':
@@ -351,12 +349,11 @@ const Token *Lexer::scanOperatorOrPunctuation()
             
         }
         else if (ch == '>'){
-             readch();
+            readch();
             return &Word::df;
            
         }
         else{
-            readch();
             return &Word::lt;
             
         }

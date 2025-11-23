@@ -18,7 +18,7 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
-    const string filePath = "testeSintatico/teste4_6.txt";
+    const string filePath = "testeSintatico/teste5_0.txt";
     vector<pair<int, string>> tokens;
 
     try
