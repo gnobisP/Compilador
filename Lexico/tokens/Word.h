@@ -15,7 +15,7 @@ public:
     string toString() const;
     string lexeme;
 
-    static const Word start, exit, end, _if, then, _else, _do, _while,
+    static const Word app, exit, end, _if, then, _else, _do, _while,
                       scan, print, semi, comma, dot, opar, cpar,
                       obra, cbra, _and, _or, _not, add, sub, mul, div,
                       asg, gt,ge,lt,le,df,eq, eof,

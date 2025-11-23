@@ -20,8 +20,7 @@ Lexer::Lexer(const string &fileName)
     }
 
     // Palavras reservadas
-    reserve(&Word::start);
-    reserve(&Word::exit);
+    reserve(&Word::app);
     reserve(&Word::end);
     reserve(&Word::_if);
     reserve(&Word::then);
@@ -94,14 +93,46 @@ const Token *Lexer::scanIdentifier()
         readch();
     } while (isalnum(ch) || ch == '_');
 
+    // Caso seja palavra reservada
     auto it = words.find(s);
     if (it != words.end())
         return it->second;
 
+    //  identificar app
+    if (s == "app")
+    {
+        Word *w = new Word(s, Tag::APP);
+        words[s] = w;
+        return w;
+    }
+        //  identificar app
+    if (s == "real")
+    {
+        Word *w = new Word(s, Tag::TYPE_FLOAT);
+        words[s] = w;
+        return w;
+    }
+        //  identificar app
+    if (s == "string")
+    {
+        Word *w = new Word(s, Tag::TYPE_STRING);
+        words[s] = w;
+        return w;
+    }
+        //  identificar app
+    if (s == "int")
+    {
+        Word *w = new Word(s, Tag::TYPE_INT);
+        words[s] = w;
+        return w;
+    }
+
+    // identificador normal
     Word *w = new Word(s, Tag::ID);
     words[s] = w;
     return w;
 }
+
 
 // nuemros float e int
 const Token *Lexer::scanNumber()
@@ -115,7 +146,7 @@ const Token *Lexer::scanNumber()
 
     if (ch != '.')
     {
-        Word *w = new Word(to_string(value), Tag::LIT_INT);
+        Word *w = new Word(to_string(value), Tag::TYPE_INT);
         words[to_string(value)] = w;
         return new LiteralInteger(value);
     }
@@ -130,7 +161,7 @@ const Token *Lexer::scanNumber()
         readch();
     }
 
-    Word *w = new Word(to_string(valuef), Tag::LIT_FLOAT);
+    Word *w = new Word(to_string(valuef), Tag::TYPE_FLOAT);
     words[to_string(valuef)] = w;
     return new LiteralFloat(valuef);
 }
@@ -152,7 +183,7 @@ const Token *Lexer::scanString()
     else
         readch(); 
 
-    Word *w = new Word(s, Tag::LIT_STRING);
+    Word *w = new Word(s, Tag::TYPE_STRING);
     words[s] = w;
     return new LiteralString(s);
 }
@@ -169,7 +200,7 @@ const Token *Lexer::scanChar()
 
     readch(); 
 
-    Word *w = new Word(to_string(c), Tag::LIT_INT);
+    Word *w = new Word(to_string(c), Tag::TYPE_INT);
     words[to_string(c)] = w;
     return new ConstChar(c);
 }

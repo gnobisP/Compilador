@@ -13,8 +13,7 @@ string Word::toString() const {
 }
 
 
-const Word Word::start("start", Tag::RES_START);
-const Word Word::exit("exit", Tag::RES_EXIT);
+const Word Word::app("app", Tag::APP);
 const Word Word::end("end", Tag::RES_END);
 const Word Word::_if("if", Tag::RES_IF);
 const Word Word::then("then", Tag::RES_THEN);

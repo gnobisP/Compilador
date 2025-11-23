@@ -51,10 +51,8 @@ string tagToString(int tag)
         return "CLOSE_BRACE";
 
             // Palavras reservadas
-    case Tag::RES_START:
-        return "START";
-    case Tag::RES_EXIT:
-        return "EXIT";
+    case Tag::APP:
+        return "APP";
     case Tag::RES_END:
         return "END";
     case Tag::RES_IF:
