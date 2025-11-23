@@ -328,23 +328,38 @@ const Token *Lexer::scanOperatorOrPunctuation()
         readch();
         return &Word::div;
     case '=':
-        if (readch('='))
-            return &Word::eq;
-        else
-            return &Word::asg;
+        if (readch('=')){
+            readch();
+            return &Word::eq;}
+        else{
+            readch();
+            return &Word::asg;}
     case '>':
-        if (readch('='))
+        if (readch('=')){
+            readch();
             return &Word::ge;
-        else
+        }
+        else{
+            readch();
             return &Word::gt;
+        }
     case '<':
         readch();
-        if (ch == '=')
+        if (ch == '='){
+            readch();
             return &Word::le;
-        else if (ch == '>')
+            
+        }
+        else if (ch == '>'){
+             readch();
             return &Word::df;
-        else
+           
+        }
+        else{
+            readch();
             return &Word::lt;
+            
+        }
     }
     return nullptr;
 }

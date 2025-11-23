@@ -18,6 +18,8 @@ void Parser::app() {
 int Parser::tag() {
     if (pos >= (int)tokens.size()) return -1; 
    
+    cout<<tokens[pos].first<<" "<<tokens[pos].second<<endl;
+
     return tokens[pos].first;
 }
 
@@ -72,8 +74,16 @@ void Parser::program() {
         if (auxiliar == Tag::TYPE_INT || auxiliar == Tag::TYPE_FLOAT || auxiliar == Tag::TYPE_STRING){
             decl_list();
         }
+        auxiliar = tag();
+        if(auxiliar == Tag::PT_OBRA){
+            stmt_list();
+        }else{
+            error("Invalid");
+            
+        }
 
-        stmt_list();
+       
+
     } else {
         error("Missing 'app' keyword at beginning of program");
     }
