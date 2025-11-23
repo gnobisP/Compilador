@@ -142,6 +142,9 @@ const Token *Lexer::scanNumber()
     {
         value = 10 * value + (ch - '0');
         readch();
+        if(isalpha(ch) || ch == '_'){
+            addErro(line);
+        }
     } while (isdigit(ch));
 
     if (ch != '.')
@@ -152,6 +155,9 @@ const Token *Lexer::scanNumber()
     }
 
     readch();
+    if(!isdigit(ch)) {
+        addErro(line);
+    }
     float valuef = value;
     float decUnit = 10;
     while (isdigit(ch))

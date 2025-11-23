@@ -7,11 +7,11 @@ app geometria
    
   if (raio > 0){ 
  
-    Area = 3. * raio * radio; 
+    Area = 3.0 * raio * radio; 
     volume = (4 * 3.14 * raio * raio * raio / 3; 
     print("Area: "); 
     print (area); 
-    print ("Volume"); 
+    print ("Volume); 
     print (volume); 
   }; 
   geometria = -volume; 
