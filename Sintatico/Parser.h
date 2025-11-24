@@ -37,7 +37,9 @@ private:
     void type();
 
     void stmt_list();
+    void stmt_listdo();
     void stmt();
+    void stmtdo();
     void assign_stmt();
     void if_stmt();
     void read_stmt();

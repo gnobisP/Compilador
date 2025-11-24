@@ -164,6 +164,22 @@ void Parser::stmt_list() {
         stmt();
     }
 }
+void Parser::stmt_listdo() {
+    cout<<"stmt-listdo ::= { stmt }"<<endl;
+    if (tag() == -1) error("EOF in stmt_list");
+    int aux;
+
+
+    while (tag() == Tag::ID || tag() == Tag::RES_IF || tag() == Tag::RES_DO ||
+            tag() == Tag::RES_SCAN || tag() == Tag::RES_PRINT ||
+           tag() == Tag::PT_OBRA) 
+    {   
+        aux = tag();
+        
+        stmtdo();
+        
+    }
+}
 
 // stmt ::= assign-stmt | if-stmt | while-stmt | dowhile-stmt | read-stmt | write-stmt | block
 void Parser::stmt() {
@@ -180,8 +196,7 @@ void Parser::stmt() {
     else if (tag() == Tag::RES_DO) {
         eat(Tag::RES_DO);
         eat(Tag::PT_OBRA);
-        stmt_list();
-        eat(Tag::PT_CBRA);
+        stmt_listdo();
         eat(Tag::RES_WHILE);
         eat(Tag::PT_OPAR);
         expression();
@@ -215,6 +230,52 @@ void Parser::stmt() {
         error("Invalid app of statement");
     }
 }
+
+void Parser::stmtdo() {
+    cout<<"stmtdo ::= assign-stmt | if-stmt | dowhile-stmt | read-stmt | write-stmt | block"<<endl;
+    if (tag() == -1) error("EOF in stmt");
+
+    if (tag() == Tag::ID) {
+        assign_stmt();
+        eat(Tag::PT_SEMI);
+    } 
+    else if (tag() == Tag::RES_IF) {
+        if_stmt();
+    }
+    else if (tag() == Tag::RES_DO) {
+        eat(Tag::RES_DO);
+        eat(Tag::PT_OBRA);
+        stmt_listdo();
+        eat(Tag::PT_CBRA);
+        eat(Tag::RES_WHILE);
+        eat(Tag::PT_OPAR);
+        expression();
+        eat(Tag::PT_CPAR);
+        eat(Tag::PT_SEMI);
+    }
+
+    else if (tag() == Tag::RES_SCAN) {
+        read_stmt();
+        eat(Tag::PT_SEMI);
+    }
+    else if (tag() == Tag::RES_PRINT) {
+        write_stmt();
+        eat(Tag::PT_SEMI);
+    }
+    else if (tag() == Tag::PT_OBRA) {
+        eat(Tag::PT_OBRA);
+        stmt_list();
+        eat(Tag::PT_CBRA);
+    }
+    else if(tag() == Tag::RES_WHILE) {
+
+    }
+    else {
+        error("Invalid app of statement");
+    }
+}
+
+
 
 // assign-stmt ::= identifier "=" simple_expr
 void Parser::assign_stmt() {
