@@ -13,9 +13,10 @@ app media
       soma = soma + num; 
       qtd = qtd + 1; 
     } 
-   while(num>0);
+  }
+   while(num>0); 
  
-   if (qtd>0){ media = soma/qtd; }
+   if (qtd>0){ media = soma/qtd;} 
  
    print("A media e"); 
     

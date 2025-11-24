@@ -71,7 +71,7 @@ void Parser::program() {
         int auxiliar = tag();
         
 
-        if (auxiliar == Tag::TYPE_INT || auxiliar == Tag::TYPE_FLOAT || auxiliar == Tag::TYPE_STRING){
+        if (auxiliar == Tag::TYPE_INT || auxiliar == Tag::TYPE_FLOAT || auxiliar == Tag::TYPE_STRING || auxiliar == Tag::CONST_CHAR){
             decl_list();
         }
         auxiliar = tag();
@@ -94,9 +94,9 @@ void Parser::decl_list() {
     cout<<"decl-list ::= decl { decl }"<<endl;
     if (tag() == -1) error("EOF in decl_list");
 
-    if (tag() == Tag::TYPE_INT || tag() == Tag::TYPE_FLOAT || tag() == Tag::TYPE_STRING) {
+    if (tag() == Tag::TYPE_INT || tag() == Tag::TYPE_FLOAT || tag() == Tag::TYPE_STRING || tag() == Tag::CONST_CHAR) {
         decl();
-        while (tag() == Tag::TYPE_INT || tag() == Tag::TYPE_FLOAT || tag() == Tag::TYPE_STRING) {
+        while (tag() == Tag::TYPE_INT || tag() == Tag::TYPE_FLOAT || tag() == Tag::TYPE_STRING || tag() == Tag::CONST_CHAR) {
             decl();
         }
     } else {
@@ -109,7 +109,7 @@ void Parser::decl() {
     cout<<"decl ::= type ident-list ';'"<<endl;
     if (tag() == -1) error("EOF in decl");
 
-    if (tag() == Tag::TYPE_INT || tag() == Tag::TYPE_FLOAT || tag() == Tag::TYPE_STRING) {
+    if (tag() == Tag::TYPE_INT || tag() == Tag::TYPE_FLOAT || tag() == Tag::TYPE_STRING  || tag() == Tag::CONST_CHAR) {
         type();
         ident_list();
         eat(Tag::PT_SEMI);
@@ -197,6 +197,7 @@ void Parser::stmt() {
         eat(Tag::RES_DO);
         eat(Tag::PT_OBRA);
         stmt_listdo();
+        eat(Tag::PT_CBRA);
         eat(Tag::RES_WHILE);
         eat(Tag::PT_OPAR);
         expression();
